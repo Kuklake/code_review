@@ -1,17 +1,27 @@
 package xyz.kuklake.employee;
 
-import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
+import java.util.Set;
 
 @ToString
 public class Employee {
 
-    @Setter
-    long id;
-    String firstName;
-    String last_name;
+    private static long count = 0;
+    private long id;
+    private String firstName;
+    private String lastName;
+    private Set<String> favoriteWords;
+
+    private Employee() {
+    }
+
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        id = ++count;
+    }
+
 
     public String getFirstName() {
         return firstName;
@@ -21,20 +31,22 @@ public class Employee {
         this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public List<String> getFavoriteWords(){
-        List<String> favoriteWords = null;
-        if (true) {
-            return favoriteWords;
+    public void setFavoriteWords (String favoriteWord) {
+        favoriteWords.add(favoriteWord);
+    }
+
+    public Set<String> getFavoriteWords() {
+        if (favoriteWords.isEmpty()) {
+            throw new RuntimeException("Pracownik nie ma ulubionych wyrazów.");
         } else
-            favoriteWords.add("kuklake");
-        return favoriteWords;
+            return favoriteWords;
     }
 }
