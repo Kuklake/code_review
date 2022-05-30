@@ -1,5 +1,6 @@
 package xyz.kuklake.employee;
 
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -9,6 +10,7 @@ import java.util.List;
 public class Employee {
 
     @Setter
+    @Getter
     long id;
     String firstName;
     String last_name;
@@ -29,7 +31,7 @@ public class Employee {
         this.last_name = last_name;
     }
 
-    public List<String> getFavoriteWords(){
+    public List<String> getFavoriteWords() {
         List<String> favoriteWords = null;
         if (true) {
             return favoriteWords;

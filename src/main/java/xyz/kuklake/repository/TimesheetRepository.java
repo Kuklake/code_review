@@ -11,6 +11,5 @@ public class TimesheetRepository {
 
     public void save(Timesheet timesheet) {
         timesheets.add(timesheet);
-        timesheets = new ArrayList<>();
     }
 }

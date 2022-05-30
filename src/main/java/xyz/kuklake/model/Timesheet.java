@@ -41,6 +41,6 @@ public class Timesheet {
     }
 
     public void setMood_type(Mood moodType) {
-        this.mood_type = mood_type;
+        this.mood_type = moodType;
     }
 }
