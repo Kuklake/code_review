@@ -1,19 +1,28 @@
 package xyz.kuklake.services;
 
-import xyz.kuklake.employee.Employee;
+import xyz.kuklake.model.Employee;
 import xyz.kuklake.model.Mood;
 import xyz.kuklake.model.Timesheet;
+import xyz.kuklake.repository.EmployeeDBRepository;
 import xyz.kuklake.repository.EmployeeRepository;
+import xyz.kuklake.repository.TimesheetDBRepository;
 import xyz.kuklake.repository.TimesheetRepository;
 
 import java.time.Month;
 
 public class TimesheetService {
 
+    private EmployeeRepository employeeRepository;
+    private TimesheetRepository timesheetRepository;
+
+    public TimesheetService(EmployeeRepository employeeRepository, TimesheetRepository timesheetRepository) {
+        this.employeeRepository = employeeRepository;
+        this.timesheetRepository = timesheetRepository;
+    }
+
     public void reportHours(long employeeId, int hours, Month month) {
 
-        EmployeeRepository employeeRepository = new EmployeeRepository();
-        Employee employee = employeeRepository.find(employeeId);
+       Employee employee = employeeRepository.findById(employeeId);
 
         Timesheet timesheet = new Timesheet();
         timesheet.setEmployee(employee);
@@ -21,15 +30,12 @@ public class TimesheetService {
         timesheet.setNumberOfHours(hours);
 
         if (hours < 40) {
-            timesheet.setMood_type(Mood.HAPPY);
+            timesheet.setMoodType(Mood.HAPPY);
         } else if (hours == 40) {
-            timesheet.setMood_type(Mood.NORMAL);
+            timesheet.setMoodType(Mood.NORMAL);
         } else
-            timesheet.setMood_type(Mood.SAD);
-
-        TimesheetRepository timesheetRepository= new TimesheetRepository();
+            timesheet.setMoodType(Mood.SAD);
 
         timesheetRepository.save(timesheet);
     }
-
 }
