@@ -22,20 +22,29 @@ public class TimesheetService {
 
     public void reportHours(long employeeId, int hours, Month month) {
 
-       Employee employee = employeeRepository.findById(employeeId);
+        Employee employee = employeeRepository.findById(employeeId);
 
         Timesheet timesheet = new Timesheet();
         timesheet.setEmployee(employee);
         timesheet.setMonth(month);
         timesheet.setNumberOfHours(hours);
-
-        if (hours < 40) {
-            timesheet.setMoodType(Mood.HAPPY);
-        } else if (hours == 40) {
-            timesheet.setMoodType(Mood.NORMAL);
-        } else
-            timesheet.setMoodType(Mood.SAD);
+        timesheet.setMoodType(calculateMood(hours));
 
         timesheetRepository.save(timesheet);
+    }
+
+    private Mood calculateMood(int hours) {
+
+        Mood mood;
+
+        if (hours < 40) {
+            mood = Mood.HAPPY;
+        } else if (hours == 40) {
+            mood = Mood.NORMAL;
+        } else {
+            mood = Mood.SAD;
+        }
+
+        return mood;
     }
 }

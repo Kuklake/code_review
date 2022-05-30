@@ -17,7 +17,7 @@ public class Main {
 
         timesheetService.reportHours(4, 40, Month.MAY);
 
-        List<Timesheet> timesheets = TimesheetDBRepository.timesheets;
+        List<Timesheet> timesheets = new TimesheetDBRepository().findAll();
 
         System.out.println(timesheets);
     }

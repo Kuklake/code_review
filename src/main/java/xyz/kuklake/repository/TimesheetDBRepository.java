@@ -7,9 +7,15 @@ import java.util.List;
 
 public class TimesheetDBRepository implements TimesheetRepository {
 
-    public static List<Timesheet> timesheets = new ArrayList<>();
+    private static List<Timesheet> timesheets = new ArrayList<>();
 
+    @Override
     public void save(Timesheet timesheet) {
         TimesheetDBRepository.timesheets.add(timesheet);
+    }
+
+    @Override
+    public List<Timesheet> findAll() {
+        return timesheets;
     }
 }
