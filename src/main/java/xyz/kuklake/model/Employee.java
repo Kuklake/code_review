@@ -1,5 +1,6 @@
 package xyz.kuklake.employee;
 
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -29,7 +30,7 @@ public class Employee {
         this.last_name = last_name;
     }
 
-    public List<String> getFavoriteWords(){
+    public List<String> getFavoriteWords() {
         List<String> favoriteWords = null;
         if (true) {
             return favoriteWords;
